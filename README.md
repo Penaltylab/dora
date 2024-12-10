@@ -98,7 +98,8 @@ sed -i -e "s/prometheus = false/prometheus = true/" $HOME/.dora/config/config.to
 sed -i -e "s/^indexer *=.*/indexer = \"null\"/" $HOME/.dora/config/config.toml
 ```
 
-# create service file
+**create service file**
+```
 sudo tee /etc/systemd/system/dorad.service > /dev/null <<EOF
 [Unit]
 Description=Dora node
@@ -113,6 +114,7 @@ LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
+```
 
 # reset and download snapshot
 dorad tendermint unsafe-reset-all --home $HOME/.dora
