@@ -116,13 +116,15 @@ WantedBy=multi-user.target
 EOF
 ```
 
-# reset and download snapshot
+**reset and download snapshot**
+```
 dorad tendermint unsafe-reset-all --home $HOME/.dora
 if curl -s --head curl https://server-4.itrocket.net/testnet/dora/dora_2024-11-28_4672662_snap.tar.lz4 | head -n 1 | grep "200" > /dev/null; then
   curl https://server-4.itrocket.net/testnet/dora/dora_2024-11-28_4672662_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.dora
     else
   echo "no snapshot found"
 fi
+```
 
 # enable and start service
 sudo systemctl daemon-reload
